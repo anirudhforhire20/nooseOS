@@ -13,20 +13,26 @@ var diskManager = {
         {
             if(index == pathArr.length)
             {
+                //console.log('created');
                 return 'Created directory successfully';
             }
-            if(currentDir.children.metadata.directories.includes(pathArr[index]))
+            else if(currentDir.children.metadata.directories.includes(pathArr[index]))
             {
+                var i = currentDir.children.metadata.directories.indexOf(pathArr[index]);
+                var nextDir = currentDir.children.directories[i];
+                //console.log('inside');
                 if(index == pathArr.length - 2)
                 {
-                    if(currentDir.children.metadata.directories.includes(pathArr[index + 1]))
+                    //console.log('inside', index); 
+                    if(nextDir.children.metadata.directories.includes(pathArr[index + 1]))
                     {
+                        //console.log('failed');
                         return 'Cannot create directory. It already exists';
                     }
                 }
-                var i = currentDir.children.metadata.directories.indexOf(pathArr[index]);
-                var nextDir = currentDir.children.directories[i];
-                recursive(index + 1, nextDir);
+                //var i = currentDir.children.metadata.directories.indexOf(pathArr[index]);
+                //var nextDir = currentDir.children.directories[i];
+                return recursive(index + 1, nextDir);
             }
             else
             {
@@ -47,16 +53,16 @@ var diskManager = {
                 currentDir.index += 1;
                 currentDir.children.metadata.directories.push(Dir.name);
                 currentDir.children.directories.push(Dir);
-                recursive(index + 1, Dir);
+                return recursive(index + 1, Dir);
             }
         }
         if(pathArr[0] == '')
         {
-            recursive(1, diskManager.metadata.environment.currentDir);
+            return recursive(1, diskManager.metadata.environment.currentDir);
         }
         else
         {
-            recursive(0, diskManager.metadata.environment.currentDir);
+            return recursive(0, diskManager.metadata.environment.currentDir);
         }
     }
 };
