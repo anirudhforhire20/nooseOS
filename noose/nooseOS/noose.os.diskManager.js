@@ -171,7 +171,7 @@ var diskManager = {
             {
                 //console.log('created');
                 //console.log(index, pathArr.length);
-                return true;
+                return 'Changed directory';
             }
             else if(currentDir.children.metadata.directories.includes(pathArr[index]))
             {
