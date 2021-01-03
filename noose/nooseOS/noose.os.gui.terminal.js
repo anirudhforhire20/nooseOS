@@ -18,15 +18,16 @@ class terminal extends frame {
 
         var user = document.createElement('span');
         user.classList.add('text-green');
-        //add user
+        user.innerHTML = Interpreter.environment.user;
         buf.append(user);
 
         buf.insertAdjacentHTML('beforeend', ' : ');
 
         var dir = document.createElement('span');
         dir.classList.add('text-blue');
-        //add dir
+        dir.innerHTML = '~/';
         buf.append(dir);
+        I.dir = dir;
 
         buf.insertAdjacentHTML('beforeend', ' $ ');
 

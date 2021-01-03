@@ -10,7 +10,7 @@
 .home {
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-image: url('../wallpaper/wallpaper1.jpg');
 }
 
 .home .header {
@@ -87,7 +87,6 @@
 .icon .img {
     width: 100%;
     height: 75%;
-    background-color: gray;
 }
 .icon-title {
     display: flex;
@@ -104,6 +103,7 @@
     width: 100%;
     height: 100%;
     background-color: black;
+    overflow-y: scroll;
 }
 
 .terminal .buffer {
@@ -130,6 +130,7 @@
     background-color: rgb(29, 29, 29);
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
 }
 
 .logger .buffer {
@@ -138,5 +139,53 @@
 .logger .buffer .blinker {
     color: white;
     font-weight: 900;
+}
+.logger .row {
+    width: 100%;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dir {
+    top: 100px;
+    left: 50px;
+    width: 70px;
+    height: 75px;
+}
+.dir:hover {
+    cursor: pointer;
+}
+.dir .img {
+    width: 100%;
+    height: 75%;
+}
+.dir-title {
+    display: flex;
+    justify-content: center;
+    color: white;
+    width: 100%;
+    height: 25%;
+}
+
+.file {
+    top: 100px;
+    left: 50px;
+    width: 70px;
+    height: 75px;
+}
+.file:hover {
+    cursor: pointer;
+}
+.file .img {
+    width: 100%;
+    height: 75%;
+}
+.file-title {
+    display: flex;
+    justify-content: center;
+    color: white;
+    width: 100%;
+    height: 25%;
 }
 

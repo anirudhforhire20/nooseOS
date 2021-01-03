@@ -164,7 +164,7 @@ class frame {
                 var index = Home.environment.frames.indexOf(I);
                 delete Home.environment.frames[index];
                 Home.environment.frames.splice(index, 1);
-                I.parentIcon.frame = null;
+                if(I.parentIcon !== null) I.parentIcon.frame = null;
                 f.remove();
             }, 200);
             f.style.opacity = '0';
@@ -236,6 +236,12 @@ class icon {
         img.classList.add('img');
         i.append(img);
 
+        var im = document.createElement('img');
+        im.src = Icons[title];
+        im.style.width = '100%';
+        im.style.height = '100%';
+        img.append(im);
+
         var t = document.createElement('div');
         t.classList.add('icon-title');
         t.innerHTML = title;
@@ -256,6 +262,16 @@ class icon {
                 else if(title == 'system.log')
                 {
                     I.frame = new sysLogger();
+                    I.frame.parentIcon = I;
+                }
+                else if(title == 'Finder')
+                {
+                    I.frame = new finder();
+                    I.frame.parentIcon = I;
+                }
+                else if(title == 'Simulator')
+                {
+                    I.frame = new simulator();
                     I.frame.parentIcon = I;
                 }
             }

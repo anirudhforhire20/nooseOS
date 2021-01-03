@@ -5,7 +5,8 @@ var Interpreter = {
     },
     environment : {
         terminal : null,
-        user : null
+        user : 'user69420',
+        dir : '~/'
     },
     commands : [
         {
@@ -65,7 +66,21 @@ var Interpreter = {
                     executable : function(path, flags) {
                         var res = diskManager.cd(path);
                         Interpreter.environment.terminal.log(res);
-                        Interpreter.environment.terminal
+                        if(res != 'Cannot change directory. No such directory exists')
+                        {
+                            if(path[0] == '/')
+                            {
+                                Interpreter.environment.dir = path;
+                                Interpreter.environment.terminal.dir.innerHTML = path;
+                            }
+                            else
+                            {
+                                Interpreter.environment.dir += path;
+                                Interpreter.environment.terminal.dir.innerHTML += path;
+                            }
+                            //Interpreter.environment.terminal.dir.innerHTML = path;
+                            //Interpreter.environment.terminal
+                        }
                     }
                 },
                 {
@@ -76,6 +91,22 @@ var Interpreter = {
                     executable : function(path, flag=false) {
                         var res = diskManager.rmdir(path, flag);
                         Interpreter.environment.terminal.log(res);
+                    }
+                },
+                {
+                    name : 'ls',
+                    type : 'executable',
+                    params : false,
+                    flags : false,
+                    executable : function() {
+                        for(var dirName of diskManager.metadata.environment.currentDir.children.metadata.directories)
+                        {
+                            Interpreter.environment.terminal.log(dirName);
+                        }
+                        for(var dirName of diskManager.metadata.environment.currentDir.children.metadata.files)
+                        {
+                            Interpreter.environment.terminal.log(dirName);
+                        }
                     }
                 }
             ]
