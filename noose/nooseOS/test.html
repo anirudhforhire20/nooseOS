@@ -11,18 +11,31 @@
     <script type="text/javascript" src="noose.os.gui.terminal.js"></script>
     <script type="text/javascript" src="noose.os.sysLogger.js"></script>
     <script type="text/javascript" src="../noose.system.js"></script>
+    <script type="text/javascript" src="noose.os.gui.finder.js"></script>
+    <script type="text/javascript" src="noose.os.gui.application.simulator.js"></script>
+    <script type="text/javascript" src="noose.os.config.js"></script>
     <link rel="stylesheet" href="noose.os.gui.css"></link>
 </head>
 <body>
-    <!--<div class="terminal">
-        <p class="buffer"><span class="text-green">user</span> : <span class="text-blue">directory</span> $ <span class="text">commands</span><span class="blinker">|</span></p>
+    <!--<div class="logger">
+        <div class="row"></div>
     </div>-->
     <script>
-        //Home.init();
-        //var ob = new icon('Terminal');
-        //var ob2 = new icon('system.log')
+        Home.init();
+        var ob = new icon('Finder');
+        var ob2 = new icon('Terminal');
         ob2.div.style.top = '200px';
+        var ob3 = new icon('system.log');
+        ob3.div.style.top = '300px';
         //NooseSystem.boot();
+        diskManager.mkdir('/noose/user69420/simulator');
+        diskManager.cd('/noose/user69420/simulator');
+        diskManager.metadata.environment.currentDir.children.files.push({
+            name : 'simulator.exe',
+            img : null
+        });
+        diskManager.metadata.environment.currentDir.children.metadata.files.push('simulator');
+        diskManager.metadata.environment.currentDir = disk.root;
     </script>
 </body>
 </html>

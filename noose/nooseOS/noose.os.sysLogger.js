@@ -18,17 +18,17 @@ class sysLogger extends frame {
 
         var user = document.createElement('span');
         user.classList.add('text-green');
-        //add user
+        user.innerHTML = Interpreter.environment.user;
         buf.append(user);
 
         buf.insertAdjacentHTML('beforeend', ' : ');
 
-        var dir = document.createElement('span');
-        dir.classList.add('text-blue');
+        //var dir = document.createElement('span');
+        //dir.classList.add('text-blue');
         //add dir
-        buf.append(dir);
+        //buf.append(dir);
 
-        buf.insertAdjacentHTML('beforeend', ' $ ');
+        //buf.insertAdjacentHTML('beforeend', ' $ ');
 
         var cmd = document.createElement('span');
         cmd.classList.add('text');
