@@ -4,8 +4,7 @@ var NooseSystem = {
         version : '1.0.0'
     },
     authData : {
-        "username" : null,
-        "password" : null
+        username : null
     },
     environment : {
         shell : null,
@@ -17,6 +16,7 @@ var NooseSystem = {
         cmd : null
     },
     boot : function() {
+        document.body.innerHTML = '';
         var shell = document.createElement('div');
         shell.classList.add('terminal');
         shell.setAttribute('tabindex', '0');
@@ -60,12 +60,8 @@ var NooseSystem = {
             else if(key == 'Enter')
             {
                 NooseSystem.log(cmd.innerHTML);
-                if(NooseSystem.authData.password != null && NooseSystem.authData.username != null)
-                {
-                    //authenticate
-                }
             }
-            else if(!(key in ['CapsLock', 'Shift', 'Tab', 'Control', 'Alt']))
+            else if(!(key == 'Escape' || key == 'Tab' || key == 'CapsLock' || key == 'Shift' || key == 'Control' || key == 'Alt' || key == 'AltGraph' || key == '<' || key == '>' || key == '&'))
             {
                 cmd.innerHTML += key;
             }
@@ -73,22 +69,28 @@ var NooseSystem = {
     },
     log : function(logstr)
     {
-        const I = this.environment;
-        var logged = I.buff.cloneNode(true);
-        logged.lastChild.remove();
-        I.shell.append(logged);
-        I.shell.append(I.buff);
-        //console.log(I.cmd);
-        if(I.field.innerHTML == 'username')
-        {
-            NooseSystem.authData.username = logstr;
-            NooseSystem.environment.field.innerHTML = 'password';
-            //console.log(NooseSystem.environment.field.innerHTML);
-        }
-        else
-        {
-            NooseSystem.authData.password = logstr;
-        }
-        I.cmd.innerHTML = '';
+        NooseSystem.authData.username = logstr;
+        Interpreter.environment.user = NooseSystem.authData.username;
+        setTimeout(function() {
+            Home.init();
+            var ob = new icon('Finder');
+            var ob2 = new icon('Terminal');
+            ob2.div.style.top = '200px';
+            var ob3 = new icon('system.log');
+            ob3.div.style.top = '300px';
+            //NooseSystem.boot();
+            diskManager.mkdir('/noose/' + Interpreter.environment.user + '/simulator');
+            diskManager.cd('/noose/' + Interpreter.environment.user + '/simulator');
+            diskManager.metadata.environment.currentDir.children.files.push({
+                name : 'simulator.exe',
+                img : null
+            });
+            diskManager.metadata.environment.currentDir.children.metadata.files.push('simulator');
+            diskManager.metadata.environment.currentDir = disk.root;
+        }, 1000);
+        var logged = document.createElement('p');
+        logged.style.color = 'white';
+        logged.innerHTML = 'logging in';
+        NooseSystem.environment.shell.append(logged);
     }
 }

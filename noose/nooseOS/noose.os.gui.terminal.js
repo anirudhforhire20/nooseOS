@@ -52,7 +52,7 @@ class terminal extends frame {
             {
                 Interpreter.execute(cmd.innerHTML);
             }
-            else if(!(key in ['CapsLock', 'Shift', 'Tab', 'Control', 'Alt']))
+            else if(!(key == 'Escape' || key == 'Tab' || key == 'CapsLock' || key == 'Shift' || key == 'Control' || key == 'Alt' || key == 'AltGraph' || key == '<' || key == '>' || key == '&'))
             {
                 cmd.innerHTML += key;
             }

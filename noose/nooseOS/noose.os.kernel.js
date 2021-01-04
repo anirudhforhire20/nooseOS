@@ -5,7 +5,7 @@ var Interpreter = {
     },
     environment : {
         terminal : null,
-        user : 'user69420',
+        user : null,
         dir : '~/'
     },
     commands : [

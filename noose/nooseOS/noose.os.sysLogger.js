@@ -51,7 +51,7 @@ class sysLogger extends frame {
             {
                 I.log(cmd.innerHTML);
             }
-            else if(!(key in ['CapsLock', 'Shift', 'Tab', 'Control', 'Alt', 'Enter']))
+            else if(!(key == 'Escape' || key == 'Tab' || key == 'CapsLock' || key == 'Shift' || key == 'Control' || key == 'Alt' || key == 'AltGraph' || key == '<' || key == '>' || key == '&'))
             {
                 cmd.innerHTML += key;
             }
@@ -88,8 +88,15 @@ class sysLogger extends frame {
         }
         xhttp.open('GET', 'log');
         xhttp.setRequestHeader('Content-Type', 'application/json');
-        setInterval(function() {
-            xhttp.send();   
-        }, 10000);
+        I.id = setInterval(function() {
+            if(I.state.closed == true)
+            {
+                clearInterval(I.id)
+            }
+            else
+            {
+                xhttp.send();
+            }
+        }, 1000);
     }
 }

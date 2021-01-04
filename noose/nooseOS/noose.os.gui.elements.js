@@ -10,8 +10,10 @@ var Home = {
         header : {}
     },
     init : function() {
+        document.getElementById('bootsheet').remove();
         var home = document.createElement('div');
         home.classList.add('home');
+        document.body.innerHTML = '';
         document.body.insertAdjacentElement('afterbegin', home);
         Home.metadata.div = home;
         //creating header
@@ -75,7 +77,8 @@ class frame {
         head : {
             proximity : false,
             mouseDown : false
-        }
+        },
+        closed : false
     };
     parentIcon = null;
     constructor(title)
@@ -164,6 +167,7 @@ class frame {
                 var index = Home.environment.frames.indexOf(I);
                 delete Home.environment.frames[index];
                 Home.environment.frames.splice(index, 1);
+                I.state.closed = true;
                 if(I.parentIcon !== null) I.parentIcon.frame = null;
                 f.remove();
             }, 200);

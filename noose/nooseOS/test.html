@@ -15,12 +15,16 @@
     <script type="text/javascript" src="noose.os.gui.application.simulator.js"></script>
     <script type="text/javascript" src="noose.os.config.js"></script>
     <link rel="stylesheet" href="noose.os.gui.css"></link>
+    <link rel="stylesheet" href="gui.stylesheet.css"></link>
+    <link id="bootsheet" rel="stylesheet" href="boot.stylesheet.css"></link>
 </head>
-<body>
+<body style="background-color: black;">
+    <div id="boot" class="boot cli" style="position: relative; width: 100vw; height: 100vh;"></div>
+    <script type="text/javascript" src="bootloader.js"></script>
     <!--<div class="logger">
         <div class="row"></div>
     </div>-->
-    <script>
+    <!--<script>
         Home.init();
         var ob = new icon('Finder');
         var ob2 = new icon('Terminal');
@@ -36,6 +40,6 @@
         });
         diskManager.metadata.environment.currentDir.children.metadata.files.push('simulator');
         diskManager.metadata.environment.currentDir = disk.root;
-    </script>
+    </script>-->
 </body>
 </html>
