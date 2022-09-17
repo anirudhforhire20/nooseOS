@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "nooseos",
+    "public": "noose",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
